@@ -12,7 +12,7 @@ function Hero() {
 			}}
 		>
 			<div className="absolute inset-0 "></div>
-			<div className="hero-content text-neutral-content text-center text-white z-10 mt-10">
+			<div className="hero-content  text-center text-white z-10 mt-10">
 				<div className="max-w-md">
 					<h1 className="mb-5 text-5xl font-bold">Let's Game!</h1>
 					<p className="mb-5">
