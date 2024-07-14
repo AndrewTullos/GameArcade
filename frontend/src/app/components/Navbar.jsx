@@ -41,7 +41,7 @@ function Navbar() {
 						</li>
 					</ul>
 				</div>
-				<a className="btn btn-ghost text-xl">
+				<a href="./" className="btn btn-ghost text-xl">
 					A<span className="text-orange">R</span>CADE
 				</a>
 			</div>
@@ -55,7 +55,7 @@ function Navbar() {
 							<summary>Games</summary>
 							<ul className="p-2">
 								<li>
-									<a>Hangman</a>
+									<a href="./games/hangman">Hangman</a>
 								</li>
 							</ul>
 						</details>
