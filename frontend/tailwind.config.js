@@ -12,13 +12,25 @@ module.exports = {
 			turquoise: "#34bea1",
 			mint: "#b7dca6",
 		},
+		stroke: {
+			black: "#000000",
+			orange: "#f6530b",
+			turquoise: "#34bea1",
+			mint: "#b7dca6",
+		},
 		extend: {
 			backgroundImage: {
 				"gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
 				"gradient-conic":
 					"conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
 			},
+			fontFamily: {
+				italic: ["var(--font-blunt)"],
+				outline: ["var(--font-blunt)"],
+				regular: ["var(--font-blunt)"],
+				script: ["var(--font-blunt)"],
+			},
 		},
 	},
-	plugins: [require("daisyui")],
+	plugins: [require("daisyui"), require("@tailwindcss/forms")],
 };
