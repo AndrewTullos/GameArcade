@@ -39,6 +39,7 @@ export default function RootLayout({ children }) {
 	return (
 		<html lang="en" className="h-full bg-neutral-950 text-base antialiased">
 			<head>
+				<link rel="icon" href="/favicon.ico" sizes="any" />
 				<style>{blunt.styles}</style>
 				<style>{inter.styles}</style>
 			</head>

@@ -105,8 +105,6 @@ const HangmanComponent = () => (
 				strokeWidth="4"
 			/>
 		</svg>
-
-		{/* Letters */}
 	</div>
 );
 

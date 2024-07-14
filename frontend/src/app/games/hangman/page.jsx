@@ -4,6 +4,7 @@ import Navbar from "@/app/components/Navbar";
 import Background from "@/app/components/Background";
 import HangmanComponent from "@/app/components/HangmanComponent";
 import StarsCanvas from "@/app/components/StarBackground";
+import SpacesComponent from "@/app/components/HangmanSpacesComponent";
 
 export default function Home() {
 	return (
@@ -12,6 +13,7 @@ export default function Home() {
 			<Navbar />
 			<main className="flex min-h-screen flex-col items-center justify-center">
 				<HangmanComponent />
+				<SpacesComponent />
 			</main>
 		</>
 	);

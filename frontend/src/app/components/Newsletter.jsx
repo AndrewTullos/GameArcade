@@ -30,7 +30,7 @@ function Newsletter() {
 							<a
 								type="submit"
 								href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-								className="flex-none rounded-md bg-indigo-900 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
+								className="flex-none rounded-md bg-transparent px-3.5 border border-orange py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-black/50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
 							>
 								Subscribe
 							</a>
