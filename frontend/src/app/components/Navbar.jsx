@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 
 function Navbar() {
 	return (
@@ -26,42 +27,42 @@ function Navbar() {
 						className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
 					>
 						<li>
-							<a>About</a>
+							<Link href="/">About</Link>
 						</li>
 						<li>
 							<a>Games</a>
 							<ul className="p-2">
 								<li>
-									<a>Hangman</a>
+									<Link href="/games/hangman">Hangman</Link>
 								</li>
 							</ul>
 						</li>
 						<li>
-							<a>Suggestions</a>
+							<Link href="/suggestions">Suggestions</Link>
 						</li>
 					</ul>
 				</div>
-				<a href="./" className="btn btn-ghost text-xl">
+				<Link className="btn btn-ghost text-xl" href="/">
 					A<span className="text-orange">R</span>CADE
-				</a>
+				</Link>
 			</div>
 			<div className="navbar-center hidden lg:flex">
 				<ul className="menu menu-horizontal px-1">
 					<li>
-						<a>About</a>
+						<Link href="/">About</Link>
 					</li>
 					<li>
 						<details>
 							<summary>Games</summary>
 							<ul className="p-2">
 								<li>
-									<a href="./games/hangman">Hangman</a>
+									<Link href="/games/hangman">Hangman</Link>
 								</li>
 							</ul>
 						</details>
 					</li>
 					<li>
-						<a>Suggestions</a>
+						<Link href="/">Suggestions</Link>
 					</li>
 				</ul>
 			</div>
