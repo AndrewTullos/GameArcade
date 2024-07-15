@@ -12,8 +12,23 @@ export default function Home() {
 			<StarsCanvas />
 			<Navbar />
 			<main className="flex min-h-screen flex-col items-center justify-center">
-				<HangmanComponent />
-				<SpacesComponent />
+				<div className="flex flex-row-2">
+					<div className="items-center justify-center m-5">
+						<SpacesComponent />
+					</div>
+					<div className=" items-center justify-center m-5">
+						<HangmanComponent />
+					</div>
+				</div>
+				<div className="flex flex-row-2">
+					<div className=" items-center justify-center m-5">
+						<HangmanComponent />
+					</div>
+					<div className=" items-center justify-center m-5">
+						<HangmanComponent />
+					</div>
+				</div>
+				<div className="flex-col"></div>
 			</main>
 		</>
 	);

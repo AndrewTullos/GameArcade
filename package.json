@@ -1,0 +1,8 @@
+{
+	"devDependencies": {
+		"concurrently": "^8.2.2"
+	},
+	"scripts": {
+		"start:all": "cd frontend && npm run start:all"
+	}
+}
