@@ -1,3 +1,4 @@
+from flask import Flask, jsonify
 import random
 
 word_list = ["greenish", "abruptly", "subway"]
@@ -7,8 +8,6 @@ def get_char():
    word_picked = random.choice(word_list)
    char_count = len(word_picked)
    return jsonify({"char_count": char_count})
-
-
 
 print(word_picked, char_count)
 
