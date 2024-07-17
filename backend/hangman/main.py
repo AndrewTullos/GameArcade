@@ -19,10 +19,17 @@ def get_char():
    return jsonify({"char_count": char_count})
 
 
-# @app.route('/get-check-letter', methods=['GET'])
-# def check_letter():
-#    for letter in word_picked:
-#       if letter == 
+@app.route('/post-check-letter', methods=['POST'])
+def check_letter():
+   data = request.get_json()
+   selected_key = data.get('selectedKey')
+
+   for letter in word_picked:
+      if letter == selected_key:
+         # update the spaces component to appear with letter above
+      # else generate piece of hangman
+   return jsonify({'message': 'Data received successfully'})  
+   
 
 if __name__ == '__main__':
    app.run(debug=True)
