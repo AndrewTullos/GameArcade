@@ -44,7 +44,7 @@ function HangmanSpacesComponent() {
 				Press Play
 			</button>
 			<svg
-				className="stroke-orange"
+				className="stroke-orange "
 				width="auto"
 				height="300"
 				xmlns="http://www.w3.org/2000/svg"

@@ -6,7 +6,7 @@ app = Flask(__name__)
 CORS(app)
 
 # Rework this to ChatGPT call to select word
-word_list = ["greenish", "abruptly", "subway"]
+word_list = ["ethical", "roast", "subway"]
 
 # Get route - sending json data for svg
 @app.route('/get-char-count', methods=['GET'])
