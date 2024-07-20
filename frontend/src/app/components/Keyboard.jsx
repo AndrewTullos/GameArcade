@@ -1,40 +1,81 @@
 "use client";
 import React, { useState } from "react";
 
+const keys = [
+	["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"],
+	["A", "S", "D", "F", "G", "H", "J", "K", "L"],
+	["Z", "X", "C", "V", "B", "N", "M", ":/"],
+];
+
+function Key({ value, onClick }) {
+	return (
+		<kbd className="kbd mt-1" onClick={() => onClick(value)}>
+			{value}
+		</kbd>
+	);
+}
+
 function Keyboard() {
 	const [selectedKey, setSelectedKey] = useState("");
+	const [attemptsLeft, setAttemptsLeft] = useState(3);
+	const [correct, setCorrect] = useState(false);
+	const [guessedLetters, setGuessedLetters] = useState([]);
 
-	function handleKeyClick(key) {
+	const handleKeyClick = (key) => {
 		setSelectedKey(key);
-	}
+	};
 
-	function handleSubmit() {
-		const fetchSelectedKey = async () => {
-			try {
-				const response = await fetch(
-					"http://127.0.0.1:5000/post-check-letter",
-					{
-						method: "POST",
-						headers: {
-							"Content-Type": "application/json",
-						},
-						body: JSON.stringify({ selectedKey }),
-					}
-				);
-				const data = await response.json();
-				console.log("Response from server:", data);
-			} catch (error) {
-				console.error("Error fetching the letter submitted:", error);
+	const handleSubmit = async () => {
+		try {
+			const response = await fetch("http://127.0.0.1:5000/post-check-letter", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({ selectedKey }),
+			});
+			const data = await response.json();
+			console.log("Response from server:", data);
+
+			// Update state based on the response
+			setAttemptsLeft(data.attempts_left);
+			setCorrect(data.correct);
+			setGuessedLetters(data.guessed_letters);
+
+			// Reset selectedKey after submission
+			setSelectedKey("");
+
+			// GAME OVER ALERT
+			if (data.attempts_left <= 0) {
+				<div role="alert" className="alert alert-error">
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						className="h-6 w-6 shrink-0 stroke-current"
+						fill="none"
+						viewBox="0 0 24 24"
+					>
+						<path
+							strokeLinecap="round"
+							strokeLinejoin="round"
+							strokeWidth="2"
+							d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
+						/>
+					</svg>
+					<span>G A M E - - O V E R</span>
+				</div>;
 			}
-		};
-	}
+		} catch (error) {
+			console.error("Error fetching the letter submitted:", error);
+		}
+	};
+
 	return (
 		<div className="group rounded-lg border-4 border-neutral-700 px-5 py-4 transition-colors hover:border-gray-300 bg-neutral-800/30 text-turquoise">
 			<div className="rounded border-2 bg-neutral-300/30">
 				{selectedKey ? (
 					<div className="m-2 text-center">{selectedKey}</div>
 				) : (
-					<div className="flex justify-center items-center m-2 text-center ">
+					<div className="flex justify-center items-center m-2 text-center">
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
 							fill="none"
@@ -52,39 +93,15 @@ function Keyboard() {
 					</div>
 				)}
 			</div>
-			<div className="my-1 flex w-full justify-center gap-1">
-				{["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"].map((key) => (
-					<kbd
-						key={key}
-						className="kbd mt-1"
-						onClick={() => handleKeyClick(key)}
-					>
-						{key}
-					</kbd>
-				))}
-			</div>
-			<div className="my-1 flex w-full justify-center gap-1">
-				{["A", "S", "D", "F", "G", "H", "J", "J", "K"].map((key) => (
-					<kbd
-						key={key}
-						className="kbd mt-1"
-						onClick={() => handleKeyClick(key)}
-					>
-						{key}
-					</kbd>
-				))}
-			</div>
-			<div className="my-1 flex w-full justify-center gap-1">
-				{["Z", "X", "C", "V", "B", "N", "M", ":)"].map((key) => (
-					<kbd
-						key={key}
-						className="kbd mt-1"
-						onClick={() => handleKeyClick(key)}
-					>
-						{key}
-					</kbd>
-				))}
-			</div>
+
+			{keys.map((row, rowIndex) => (
+				<div key={rowIndex} className="my-1 flex w-full justify-center gap-1">
+					{row.map((key, index) => (
+						<Key key={index} value={key} onClick={handleKeyClick} />
+					))}
+				</div>
+			))}
+
 			<div className="my-1 flex w-full justify-center gap-1">
 				<button
 					className="kbd mt-1 btn btn-wide text-turquoise"
