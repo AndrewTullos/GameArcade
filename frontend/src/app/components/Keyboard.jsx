@@ -20,7 +20,8 @@ function Keyboard() {
 	const [selectedKey, setSelectedKey] = useState("");
 	const [attemptsLeft, setAttemptsLeft] = useState(6);
 	const [correct, setCorrect] = useState(false);
-	const [guessedLetters, setGuessedLetters] = useState([]);
+	const [correctLetters, setCorrectLetters] = useState([]);
+	const [incorrectLetters, setIncorrectLetters] = useState([]);
 	const [gameOver, setGameOver] = useState(false);
 
 	const handleKeyClick = (key) => {
@@ -42,7 +43,8 @@ function Keyboard() {
 			// Update state based on the response
 			setAttemptsLeft(data.attempts_left);
 			setCorrect(data.correct);
-			setGuessedLetters([...data.guessed_letters]);
+			setCorrectLetters([...data.correct_letters]);
+			setIncorrectLetters([...data.incorrectLetters]);
 
 			// Reset selectedKey after submission
 			setSelectedKey("");
