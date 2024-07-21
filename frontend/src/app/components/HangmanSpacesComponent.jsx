@@ -3,6 +3,7 @@ import React, { useState } from "react";
 
 function HangmanSpacesComponent() {
 	const [charCount, setCharCount] = useState(0);
+	const [gameReset, setGameReset] = useState(false);
 
 	const fetchCharCount = async () => {
 		try {
@@ -14,7 +15,12 @@ function HangmanSpacesComponent() {
 		}
 	};
 
+	const resetGame = () => {
+		setGameReset(!gameReset);
+	};
+
 	const handleButtonClick = () => {
+		resetGame();
 		fetchCharCount();
 	};
 
@@ -41,7 +47,7 @@ function HangmanSpacesComponent() {
 				className="btn bg-black border-orange"
 				onClick={handleButtonClick}
 			>
-				Press Play
+				Press Play / Reset Game
 			</button>
 			<svg
 				className="stroke-orange "
