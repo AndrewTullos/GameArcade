@@ -20,6 +20,7 @@ function Keyboard() {
 	const [attemptsLeft, setAttemptsLeft] = useState(3);
 	const [correct, setCorrect] = useState(false);
 	const [guessedLetters, setGuessedLetters] = useState([]);
+	const [gameOver, setGameOver] = useState(false);
 
 	const handleKeyClick = (key) => {
 		setSelectedKey(key);
@@ -47,22 +48,7 @@ function Keyboard() {
 
 			// GAME OVER ALERT
 			if (data.attempts_left <= 0) {
-				<div role="alert" className="alert alert-error">
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						className="h-6 w-6 shrink-0 stroke-current"
-						fill="none"
-						viewBox="0 0 24 24"
-					>
-						<path
-							strokeLinecap="round"
-							strokeLinejoin="round"
-							strokeWidth="2"
-							d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
-						/>
-					</svg>
-					<span>G A M E - - O V E R</span>
-				</div>;
+				setGameOver(true);
 			}
 		} catch (error) {
 			console.error("Error fetching the letter submitted:", error);
@@ -72,6 +58,26 @@ function Keyboard() {
 	return (
 		<div className="group rounded-lg border-4 border-neutral-700 px-5 py-4 transition-colors hover:border-gray-300 bg-neutral-800/30 text-turquoise">
 			<div className="rounded border-2 bg-neutral-300/30">
+				{/* GAME OVER */}
+				{gameOver && (
+					<div role="alert" className="alert alert-error flex justify-center">
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							className="h-6 w-6 shrink-0 stroke-current justify-center items-center"
+							fill="none"
+							viewBox="0 0 24 24"
+						>
+							<path
+								strokeLinecap="round"
+								strokeLinejoin="round"
+								strokeWidth="2"
+								d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
+							/>
+						</svg>
+						<span>G A M E - - O V E R</span>
+					</div>
+				)}
+
 				{selectedKey ? (
 					<div className="m-2 text-center">{selectedKey}</div>
 				) : (

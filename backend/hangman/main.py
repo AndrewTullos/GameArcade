@@ -6,7 +6,7 @@ app = Flask(__name__)
 CORS(app)
 
 # To-do change words to pull from chat gpt
-word_list = ["ethical", "roasted", "subway"]
+word_list = ["roasted", "roasted", "roasted"]
 word_picked = ""
 guessed_letters = []
 max_attempts = 6
