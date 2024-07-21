@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useState } from "react";
 
 const keys = [
@@ -17,7 +18,7 @@ function Key({ value, onClick }) {
 
 function Keyboard() {
 	const [selectedKey, setSelectedKey] = useState("");
-	const [attemptsLeft, setAttemptsLeft] = useState(3);
+	const [attemptsLeft, setAttemptsLeft] = useState(6);
 	const [correct, setCorrect] = useState(false);
 	const [guessedLetters, setGuessedLetters] = useState([]);
 	const [gameOver, setGameOver] = useState(false);
@@ -41,12 +42,12 @@ function Keyboard() {
 			// Update state based on the response
 			setAttemptsLeft(data.attempts_left);
 			setCorrect(data.correct);
-			setGuessedLetters(data.guessed_letters);
+			setGuessedLetters([...data.guessed_letters]);
 
 			// Reset selectedKey after submission
 			setSelectedKey("");
 
-			// GAME OVER ALERT
+			// Check for game over condition
 			if (data.attempts_left <= 0) {
 				setGameOver(true);
 			}
@@ -57,49 +58,49 @@ function Keyboard() {
 
 	return (
 		<div className="group rounded-lg border-4 border-neutral-700 px-5 py-4 transition-colors hover:border-gray-300 bg-neutral-800/30 text-turquoise">
-			<div className="rounded border-2 bg-neutral-300/30">
-				{/* GAME OVER */}
-				{gameOver && (
-					<div role="alert" className="alert alert-error flex justify-center">
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							className="h-6 w-6 shrink-0 stroke-current justify-center items-center"
-							fill="none"
-							viewBox="0 0 24 24"
-						>
-							<path
-								strokeLinecap="round"
-								strokeLinejoin="round"
-								strokeWidth="2"
-								d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
-							/>
-						</svg>
-						<span>G A M E - - O V E R</span>
-					</div>
-				)}
+			{/* Game Over Alert */}
+			{gameOver && (
+				<div role="alert" className="alert alert-error flex justify-center">
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						className="h-6 w-6 shrink-0 stroke-current justify-center items-center"
+						fill="none"
+						viewBox="0 0 24 24"
+					>
+						<path
+							strokeLinecap="round"
+							strokeLinejoin="round"
+							strokeWidth="2"
+							d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
+						/>
+					</svg>
+					<span>G A M E - - O V E R</span>
+				</div>
+			)}
 
-				{selectedKey ? (
-					<div className="m-2 text-center">{selectedKey}</div>
-				) : (
-					<div className="flex justify-center items-center m-2 text-center">
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							fill="none"
-							viewBox="0 0 24 24"
-							strokeWidth={1.5}
-							stroke="currentColor"
-							className="size-6"
-						>
-							<path
-								strokeLinecap="round"
-								strokeLinejoin="round"
-								d="m3.75 13.5 10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75Z"
-							/>
-						</svg>
-					</div>
-				)}
-			</div>
+			{/* Display selected key */}
+			{selectedKey ? (
+				<div className="m-2 text-center">{selectedKey}</div>
+			) : (
+				<div className="flex justify-center items-center m-2 text-center">
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						fill="none"
+						viewBox="0 0 24 24"
+						strokeWidth={1.5}
+						stroke="currentColor"
+						className="size-6"
+					>
+						<path
+							strokeLinecap="round"
+							strokeLinejoin="round"
+							d="m3.75 13.5 10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75Z"
+						/>
+					</svg>
+				</div>
+			)}
 
+			{/* Render keyboard keys */}
 			{keys.map((row, rowIndex) => (
 				<div key={rowIndex} className="my-1 flex w-full justify-center gap-1">
 					{row.map((key, index) => (
@@ -108,6 +109,7 @@ function Keyboard() {
 				</div>
 			))}
 
+			{/* Submit button */}
 			<div className="my-1 flex w-full justify-center gap-1">
 				<button
 					className="kbd mt-1 btn btn-wide text-turquoise"

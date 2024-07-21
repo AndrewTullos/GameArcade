@@ -10,6 +10,7 @@ function HangmanSpacesComponent() {
 			const response = await fetch("http://127.0.0.1:5000/get-char-count");
 			const data = await response.json();
 			setCharCount(data.char_count);
+			console.log(data.char_count);
 		} catch (error) {
 			console.error("Error fetching the character count:", error);
 		}
@@ -51,7 +52,7 @@ function HangmanSpacesComponent() {
 			</button>
 			<svg
 				className="stroke-orange "
-				width="auto"
+				width="100%"
 				height="300"
 				xmlns="http://www.w3.org/2000/svg"
 			>

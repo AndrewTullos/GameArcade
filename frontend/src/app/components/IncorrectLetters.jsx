@@ -1,20 +1,8 @@
 "use client";
 import React, { useState } from "react";
-import Image from "next/image";
 
 const IncorrectLetters = () => {
 	const [incorrectLetters, setIncorrectLetters] = useState([]);
-
-	const fetchGuessedLetters = async () => {
-		try {
-			const response = await fetch("http://127.0.0.1:5000/get-char-count");
-			const data = await response.json();
-			setGuessedLetters(data.guessed_letters);
-			setIncorrectLetters(data.incorrect_letters);
-		} catch (error) {
-			console.error("Error fetching the character count:", error);
-		}
-	};
 
 	const handleKeyPress = async (key) => {
 		try {
@@ -28,7 +16,10 @@ const IncorrectLetters = () => {
 			const data = await response.json();
 
 			if (!data.correct) {
-				setIncorrectLetters([...incorrectLetters, key]);
+				setIncorrectLetters((prevIncorrectLetters) => [
+					...prevIncorrectLetters,
+					key,
+				]);
 			}
 		} catch (error) {
 			console.error("Error checking letter:", error);
